@@ -1,13 +1,3 @@
-تمام، هنعمله كامل ومناسب للـ GitHub، ويغطي **كل الـ tasks اللي خلصناها** + الـ Figma link + screenshots.
-
-افتحي:
-
-```text
-entity-module/README.md
-```
-
-وامسحي كل اللي جواه، وحطي ده:
-
 # Real Estate Marketplace
 
 A full-stack real estate marketplace backend that allows users to manage property listings with authentication, authorization, CRUD operations, and image uploads.
