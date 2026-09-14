@@ -1,0 +1,60 @@
+<article class="property-card">
+
+  <div class="image-wrapper">
+
+    <img
+      [src]="property().image
+        ? 'http://localhost:3000/uploads/' + property().image
+        : 'assets/images/property-placeholder.jpg'"
+      [alt]="property().title">
+
+    <span class="listing-badge">
+      {{ property().listingType }}
+    </span>
+
+    <button
+      class="favorite-btn"
+      type="button"
+      aria-label="Add to favorites">
+      ♡
+    </button>
+
+  </div>
+
+  <div class="property-content">
+
+    <div class="price">
+      {{ property().price }}
+    </div>
+
+    <h3>{{ property().title }}</h3>
+
+    <p class="location">
+      ⌖ {{ property().location }}
+    </p>
+
+    <div class="details">
+
+      <span>
+        🛏 {{ property().bedrooms }} Beds
+      </span>
+
+      <span>
+        ◉ {{ property().bathrooms }} Baths
+      </span>
+
+      <span>
+        ▫ {{ property().area }} m²
+      </span>
+
+    </div>
+
+    <a
+      class="details-link"
+      [routerLink]="['/properties', property()._id]">
+      View Details →
+    </a>
+
+  </div>
+
+</article>

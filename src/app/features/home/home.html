@@ -1,0 +1,382 @@
+<app-navbar></app-navbar>
+
+<main>
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          ✦ Find a place you'll love
+        </span>
+
+        <h1>
+          Find Your
+          <span>Perfect Property</span>
+        </h1>
+
+        <p>
+          Discover beautiful homes, apartments and properties
+          that match your lifestyle and your dreams.
+        </p>
+
+
+        <!-- SEARCH CARD -->
+
+        <div class="search-card">
+
+          <!-- BUY / RENT -->
+
+          <div class="search-tabs">
+
+            <button
+              type="button"
+              [class.active]="searchType === 'Buy'"
+              (click)="setSearchType('Buy')">
+
+              Buy
+
+            </button>
+
+
+            <button
+              type="button"
+              [class.active]="searchType === 'Rent'"
+              (click)="setSearchType('Rent')">
+
+              Rent
+
+            </button>
+
+          </div>
+
+
+          <div class="search-fields">
+
+
+            <!-- LOCATION -->
+
+            <div class="field">
+
+              <label>
+                Location
+              </label>
+
+              <input
+                type="text"
+                placeholder="Where do you want to live?"
+                [(ngModel)]="searchLocation">
+
+            </div>
+
+
+            <!-- PROPERTY TYPE -->
+
+            <div class="field">
+
+              <label>
+                Property Type
+              </label>
+
+              <select   
+             [(ngModel)]="selectedType">
+
+                <option value="Any Type">
+                  Any Type
+                </option>
+
+                <option value="Apartment">
+                  Apartment
+                </option>
+
+                <option value="Villa">
+                  Villa
+                </option>
+
+                <option value="House">
+                  House
+                </option>
+
+                <option value="Chalet">
+                  Chalet
+                </option>
+
+                <option value="Commercial">
+                  Commercial
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="field">
+
+              <label>
+                Price Range
+              </label>
+
+              <select
+                [(ngModel)]="selectedPrice">
+
+                <option value="Any Price">
+                  Any Price
+                </option>
+
+                <option value="Under $100k">
+                  Under $100k
+                </option>
+
+                <option value="$100k - $300k">
+                  $100k - $300k
+                </option>
+
+                <option value="$300k - $500k">
+                  $300k - $500k
+                </option>
+
+                <option value="$500k+">
+                  $500k+
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- SEARCH BUTTON -->
+
+            <button
+              class="search-btn"
+              type="button"
+              (click)="search()">
+
+              Search
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- HERO IMAGE -->
+
+      <div class="hero-image-wrapper">
+
+        <img
+          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=85"
+          alt="Modern luxury house">
+
+
+        <div class="floating-card">
+
+          <div class="floating-icon">
+            ⌂
+          </div>
+
+          <div>
+
+            <strong>
+              10,000+
+            </strong>
+
+            <span>
+              Properties Listed
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       FEATURED PROPERTIES
+  ========================== -->
+
+  <section class="section featured">
+
+    <div class="container">
+
+      <div class="section-header-row">
+
+        <div>
+
+          <span class="eyebrow">
+            EXPLORE
+          </span>
+
+          <h2 class="section-title">
+            Featured Properties
+          </h2>
+
+          <p class="section-subtitle">
+            Hand-picked properties that stand out for their
+            location, design and value.
+          </p>
+
+        </div>
+
+
+        <a
+          routerLink="/properties"
+          class="view-all">
+
+          View All Properties →
+
+        </a>
+
+      </div>
+
+
+      <div class="property-grid">
+
+        @for (
+          property of featuredProperties;
+          track property._id
+        ) {
+
+          <app-property-card
+            [property]="property">
+          </app-property-card>
+
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       HOW IT WORKS
+  ========================== -->
+
+  <section class="section how-it-works">
+
+    <div class="container">
+
+
+      <div class="center-header">
+
+        <span class="eyebrow">
+          SIMPLE PROCESS
+        </span>
+
+        <h2 class="section-title">
+          How It Works
+        </h2>
+
+        <p class="section-subtitle">
+          Finding your dream property has never been easier.
+        </p>
+
+      </div>
+
+
+
+      <div class="steps">
+
+
+        <!-- STEP 1 -->
+
+        <div class="step">
+
+          <div class="step-number">
+            01
+          </div>
+
+          <div class="step-icon">
+            ⌕
+          </div>
+
+          <h3>
+            Search
+          </h3>
+
+          <p>
+            Search through properties using
+            our simple filters.
+          </p>
+
+        </div>
+
+
+
+        <!-- STEP 2 -->
+
+        <div class="step">
+
+          <div class="step-number">
+            02
+          </div>
+
+          <div class="step-icon">
+            ⌂
+          </div>
+
+          <h3>
+            Explore
+          </h3>
+
+          <p>
+            Explore property details, photos,
+            features and locations.
+          </p>
+
+        </div>
+
+
+
+        <!-- STEP 3 -->
+
+        <div class="step">
+
+          <div class="step-number">
+            03
+          </div>
+
+          <div class="step-icon">
+            ✦
+          </div>
+
+          <h3>
+            Connect
+          </h3>
+
+          <p>
+            Contact an agent and take the
+            next step toward your new property.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<app-footer></app-footer>

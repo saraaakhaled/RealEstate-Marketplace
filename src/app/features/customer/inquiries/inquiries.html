@@ -1,0 +1,163 @@
+<div class="inquiries-page">
+
+  <app-dashboard-sidebar></app-dashboard-sidebar>
+
+  <main class="inquiries-content">
+
+    <div class="page-header">
+      <span class="eyebrow">CUSTOMER PORTAL</span>
+
+      <h1>My Inquiries</h1>
+
+      <p>
+        Track your property inquiries and requests.
+      </p>
+    </div>
+
+
+    @if (isLoading) {
+
+      <div class="loading-state">
+        <p>Loading your inquiries...</p>
+      </div>
+
+    }
+
+
+    @if (!isLoading && inquiries.length > 0) {
+
+      <div class="inquiries-card">
+
+        <div class="card-header">
+
+          <div>
+            <h2>Recent Inquiries</h2>
+
+            <p>
+              {{ inquiries.length }} inquiries
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="inquiries-list">
+
+          @for (inquiry of inquiries; track inquiry._id) {
+
+            <div class="inquiry-item">
+
+              <div class="property-info">
+
+                <div class="property-icon">
+                  🏠
+                </div>
+
+                <div class="property-details">
+
+                  <h3>
+                    {{ inquiry.property?.title || 'Property' }}
+                  </h3>
+
+                  <p>
+                    📍
+                    {{ inquiry.property?.location || 'Location not available' }}
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="inquiry-message">
+
+                <span>Message</span>
+
+                <p>
+                  {{ inquiry.message }}
+                </p>
+
+              </div>
+
+
+              <div class="inquiry-date">
+
+                <span>Date</span>
+
+                <strong>
+                  {{ inquiry.createdAt | date:'MMM dd, yyyy' }}
+                </strong>
+
+              </div>
+
+
+              <div class="inquiry-status">
+
+                <span class="status-label">
+                  Status
+                </span>
+
+                <span
+                  class="status"
+                  [class.pending]="inquiry.status === 'Pending'"
+                  [class.contacted]="inquiry.status === 'Contacted'"
+                  [class.scheduled]="inquiry.status === 'Viewing Scheduled'">
+
+                  {{ inquiry.status || 'Pending' }}
+
+                </span>
+
+              </div>
+
+
+              <button
+                type="button"
+                class="view-btn"
+                [routerLink]="['/properties', inquiry.property?._id]">
+
+                View Property
+
+              </button>
+
+            </div>
+
+          }
+
+        </div>
+
+      </div>
+
+    }
+
+
+    @if (!isLoading && inquiries.length === 0) {
+
+      <div class="empty-state">
+
+        <div class="empty-icon">
+          ✉
+        </div>
+
+        <h2>
+          No Inquiries Yet
+        </h2>
+
+        <p>
+          You haven't sent any property inquiries yet.
+        </p>
+
+        <a
+          routerLink="/properties"
+          class="browse-btn">
+
+          Browse Properties
+
+        </a>
+
+      </div>
+
+    }
+
+  </main>
+
+</div>

@@ -1,0 +1,368 @@
+.inquiries-page {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+
+/* =========================
+   Main Content
+========================= */
+
+.inquiries-content {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+  min-height: 100vh;
+  padding: 45px 50px 70px;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   Page Header
+========================= */
+
+.page-header {
+  margin-bottom: 35px;
+}
+
+.eyebrow {
+  display: block;
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 7px;
+}
+
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+  font-size: 34px;
+  font-weight: 600;
+  margin: 0 0 7px;
+}
+
+.page-header p {
+  color: var(--text-light);
+  font-size: 13px;
+  margin: 0;
+}
+
+
+/* =========================
+   Inquiries Card
+========================= */
+
+.inquiries-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.card-header {
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-header h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.card-header p {
+  color: var(--text-light);
+  font-size: 12px;
+  margin: 0;
+}
+
+
+/* =========================
+   Inquiry List
+========================= */
+
+.inquiries-list {
+  width: 100%;
+}
+
+.inquiry-item {
+  display: grid;
+  grid-template-columns: 2fr 2.2fr 1fr 1.2fr auto;
+  gap: 22px;
+  align-items: center;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+.inquiry-item:last-child {
+  border-bottom: none;
+}
+
+
+/* =========================
+   Property
+========================= */
+
+.property-info {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+.property-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.property-info h3 {
+  color: var(--text);
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 5px;
+}
+
+.property-info p {
+  color: var(--text-light);
+  font-size: 11px;
+  margin: 0;
+}
+
+
+/* =========================
+   Message
+========================= */
+
+.inquiry-message {
+  min-width: 0;
+}
+
+.inquiry-message span,
+.inquiry-date span,
+.status-label {
+  display: block;
+  color: var(--text-light);
+  font-size: 10px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.inquiry-message p {
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+
+/* =========================
+   Date
+========================= */
+
+.inquiry-date strong {
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+
+/* =========================
+   Status
+========================= */
+
+.status {
+  display: inline-block;
+  padding: 6px 9px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status.pending {
+  background: #fff7e6;
+  color: #b7791f;
+}
+
+.status.contacted {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.status.scheduled {
+  background: #edf4ff;
+  color: #4772b8;
+}
+
+
+/* =========================
+   View Button
+========================= */
+
+.view-btn {
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--primary);
+  padding: 8px 13px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.view-btn:hover {
+  background: var(--primary-light);
+}
+
+
+/* =========================
+   Empty State
+========================= */
+
+.empty-state {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-align: center;
+  padding: 70px 20px;
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+}
+
+.empty-icon {
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 24px;
+}
+
+.empty-state h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+  font-size: 23px;
+  margin: 0 0 8px;
+}
+
+.empty-state p {
+  color: var(--text-light);
+  font-size: 13px;
+  margin: 0 0 20px;
+}
+
+.browse-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.browse-btn:hover {
+  background: var(--primary-dark);
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 1100px) {
+
+  .inquiries-content {
+    padding: 40px 30px 60px;
+  }
+
+  .inquiry-item {
+    grid-template-columns: 1.5fr 2fr 1fr;
+    gap: 18px;
+  }
+
+  .inquiry-message {
+    grid-column: span 2;
+  }
+
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 800px) {
+
+  .inquiries-content {
+    margin-left: 75px;
+    width: calc(100% - 75px);
+    padding: 35px 25px 50px;
+  }
+
+  .inquiry-item {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .inquiry-message {
+    grid-column: auto;
+  }
+
+  .view-btn {
+    width: fit-content;
+  }
+
+}
+
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 500px) {
+
+  .inquiries-content {
+    margin-left: 75px;
+    width: calc(100% - 75px);
+    padding: 30px 18px 45px;
+  }
+
+  .page-header h1 {
+    font-size: 29px;
+  }
+
+  .card-header {
+    padding: 18px;
+  }
+
+  .inquiry-item {
+    padding: 18px;
+  }
+
+}

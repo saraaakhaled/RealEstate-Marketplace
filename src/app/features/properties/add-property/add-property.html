@@ -1,0 +1,396 @@
+<div class="add-property-page">
+
+  <app-navbar></app-navbar>
+
+  <section class="page-header">
+
+    <div class="container">
+
+      <a
+        routerLink="/properties"
+        class="back-link">
+        ← Back to Properties
+      </a>
+
+      <span class="eyebrow">
+        ESTATEHUB
+      </span>
+
+      <h1>
+        List Your Property
+      </h1>
+
+      <p>
+        Add your property details and photos.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="form-section">
+
+    <div class="container">
+
+      <form
+        class="property-form"
+        (ngSubmit)="submitProperty()">
+
+
+        <!-- Basic Information -->
+
+        <div class="form-card">
+
+          <div class="card-header">
+
+            <h2>
+              Property Information
+            </h2>
+
+            <p>
+              Enter the basic details of your property.
+            </p>
+
+          </div>
+
+
+          <div class="form-grid">
+
+
+            <!-- Title -->
+
+            <div class="form-group full-width">
+
+              <label for="title">
+                Property Title
+              </label>
+
+              <input
+                id="title"
+                type="text"
+                name="title"
+                [(ngModel)]="property.title"
+                placeholder="e.g. Modern Luxury Villa"
+                required
+              />
+
+            </div>
+
+
+            <!-- Property Type -->
+
+            <div class="form-group">
+
+              <label for="propertyType">
+                Property Type
+              </label>
+
+              <select
+                id="propertyType"
+                name="propertyType"
+                [(ngModel)]="property.propertyType">
+
+                <option value="Apartment">
+                  Apartment
+                </option>
+
+                <option value="Villa">
+                  Villa
+                </option>
+
+                <option value="House">
+                  House
+                </option>
+
+                <option value="Office">
+                  Office
+                </option>
+
+                <option value="Land">
+                  Land
+                </option>
+
+                <option value="Chalet">
+                  Chalet
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Listing Type -->
+
+            <div class="form-group">
+
+              <label for="listingType">
+                Listing Type
+              </label>
+
+              <select
+                id="listingType"
+                name="listingType"
+                [(ngModel)]="property.listingType">
+
+                <option value="Sale">
+                  Sale
+                </option>
+
+                <option value="Rent">
+                  Rent
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Price -->
+
+            <div class="form-group">
+
+              <label for="price">
+                Price
+              </label>
+
+              <input
+                id="price"
+                type="number"
+                name="price"
+                [(ngModel)]="property.price"
+                placeholder="e.g. 10000000"
+                min="0"
+                required
+              />
+
+            </div>
+
+
+            <!-- Location -->
+
+            <div class="form-group">
+
+              <label for="location">
+                Location
+              </label>
+
+              <input
+                id="location"
+                type="text"
+                name="location"
+                [(ngModel)]="property.location"
+                placeholder="e.g. New Cairo"
+                required
+              />
+
+            </div>
+
+
+            <!-- Bedrooms -->
+
+            <div class="form-group">
+
+              <label for="bedrooms">
+                Bedrooms
+              </label>
+
+              <input
+                id="bedrooms"
+                type="number"
+                name="bedrooms"
+                [(ngModel)]="property.bedrooms"
+                min="0"
+                required
+              />
+
+            </div>
+
+
+            <!-- Bathrooms -->
+
+            <div class="form-group">
+
+              <label for="bathrooms">
+                Bathrooms
+              </label>
+
+              <input
+                id="bathrooms"
+                type="number"
+                name="bathrooms"
+                [(ngModel)]="property.bathrooms"
+                min="0"
+                required
+              />
+
+            </div>
+
+
+            <!-- Area -->
+
+            <div class="form-group">
+
+              <label for="area">
+                Area (m²)
+              </label>
+
+              <input
+                id="area"
+                type="number"
+                name="area"
+                [(ngModel)]="property.area"
+                placeholder="e.g. 250"
+                min="0"
+                required
+              />
+
+            </div>
+
+
+            <!-- Description -->
+
+            <div class="form-group full-width">
+
+              <label for="description">
+                Description
+              </label>
+
+              <textarea
+                id="description"
+                name="description"
+                [(ngModel)]="property.description"
+                placeholder="Describe your property..."
+                rows="6"
+                required>
+              </textarea>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Images -->
+
+        <div class="form-card">
+
+          <div class="card-header">
+
+            <h2>
+              Property Photos
+            </h2>
+
+            <p>
+              Add photos of your property.
+            </p>
+
+          </div>
+
+
+          <div class="image-upload">
+
+            <label
+              for="images"
+              class="upload-box">
+
+              <span class="upload-icon">
+                +
+              </span>
+
+              <strong>
+                Choose Property Photos
+              </strong>
+
+              <span>
+                You can select multiple images
+              </span>
+
+            </label>
+
+
+            <input
+              id="images"
+              type="file"
+              name="images"
+              accept="image/*"
+              multiple
+              (change)="onImagesSelected($event)"
+            />
+
+
+            @if (selectedImages.length > 0) {
+
+              <div class="selected-images">
+
+                <p class="selected-title">
+                  {{ selectedImages.length }} image(s) selected
+                </p>
+
+
+                <div class="file-list">
+
+                  @for (
+                    image of selectedImages;
+                    track image.name
+                  ) {
+
+                    <div class="file-item">
+
+                      <span>
+                        {{ image.name }}
+                      </span>
+
+                      <small>
+                        {{ (image.size / 1024 / 1024).toFixed(2) }} MB
+                      </small>
+
+                    </div>
+
+                  }
+
+                </div>
+
+              </div>
+
+            }
+
+          </div>
+
+        </div>
+
+
+        <!-- Actions -->
+
+        <div class="form-actions">
+
+          <a
+            routerLink="/properties"
+            class="cancel-btn">
+            Cancel
+          </a>
+
+
+          <button
+  type="submit"
+  class="submit-btn"
+  [disabled]="isSubmitting">
+
+  {{ isSubmitting ? 'Adding Property...' : 'Add Property' }}
+
+</button>
+
+        </div>
+
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <app-footer></app-footer>
+
+</div>

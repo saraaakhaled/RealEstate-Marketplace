@@ -1,0 +1,224 @@
+<div class="profile-layout">
+
+  <app-dashboard-sidebar />
+
+  <main class="profile-content">
+
+    <!-- Header -->
+    <div class="page-header">
+      <div>
+        <p class="eyebrow">CUSTOMER PORTAL</p>
+        <h1>My Profile</h1>
+        <p>Manage your personal information and account settings.</p>
+      </div>
+    </div>
+
+
+    <!-- Success / Error Message -->
+    @if (savedMessage) {
+      <div class="message">
+        {{ savedMessage }}
+      </div>
+    }
+
+
+    <!-- Profile Information -->
+    <section class="profile-card">
+
+      <div class="card-header">
+        <div>
+          <h2>Personal Information</h2>
+          <p>Update your account details.</p>
+        </div>
+
+        <button
+          class="edit-btn"
+          type="button"
+          (click)="toggleEdit()"
+        >
+          {{ isEditing ? 'Cancel' : 'Edit Profile' }}
+        </button>
+      </div>
+
+
+      <form
+        [formGroup]="profileForm"
+        (ngSubmit)="saveProfile()"
+      >
+
+        <div class="form-grid">
+
+          <!-- Full Name -->
+          <div class="form-group">
+
+            <label for="fullName">Full Name</label>
+
+            <input
+              id="fullName"
+              type="text"
+              formControlName="fullName"
+              [readonly]="!isEditing"
+            />
+
+            @if (
+              profileForm.controls.fullName.touched &&
+              profileForm.controls.fullName.invalid
+            ) {
+              <small>Name is required.</small>
+            }
+
+          </div>
+
+
+          <!-- Email -->
+          <div class="form-group">
+
+            <label for="email">Email Address</label>
+
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              [readonly]="!isEditing"
+            />
+
+            @if (
+              profileForm.controls.email.touched &&
+              profileForm.controls.email.invalid
+            ) {
+              <small>Please enter a valid email.</small>
+            }
+
+          </div>
+
+
+          <!-- Phone -->
+          <div class="form-group">
+
+            <label for="phone">Phone Number</label>
+
+            <input
+              id="phone"
+              type="text"
+              formControlName="phone"
+              [readonly]="!isEditing"
+            />
+
+            @if (
+              profileForm.controls.phone.touched &&
+              profileForm.controls.phone.invalid
+            ) {
+              <small>Please enter a valid phone number.</small>
+            }
+
+          </div>
+
+        </div>
+
+
+        @if (isEditing) {
+
+          <div class="form-actions">
+
+            <button
+              class="save-btn"
+              type="submit"
+            >
+              Save Changes
+            </button>
+
+          </div>
+
+        }
+
+      </form>
+
+    </section>
+
+
+    <!-- Change Password -->
+    <section class="profile-card password-card">
+
+      <div class="card-header">
+        <div>
+          <h2>Change Password</h2>
+          <p>Keep your account secure with a strong password.</p>
+        </div>
+      </div>
+
+
+      <form
+        [formGroup]="passwordForm"
+        (ngSubmit)="changePassword()"
+      >
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label for="currentPassword">
+              Current Password
+            </label>
+
+            <input
+              id="currentPassword"
+              type="password"
+              formControlName="currentPassword"
+              placeholder="Enter current password"
+            />
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="newPassword">
+              New Password
+            </label>
+
+            <input
+              id="newPassword"
+              type="password"
+              formControlName="newPassword"
+              placeholder="Enter new password"
+            />
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="confirmPassword">
+              Confirm New Password
+            </label>
+
+            <input
+              id="confirmPassword"
+              type="password"
+              formControlName="confirmPassword"
+              placeholder="Confirm new password"
+            />
+
+          </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+          <button
+            class="save-btn"
+            type="submit"
+          >
+            Change Password
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+
+  </main>
+
+</div>

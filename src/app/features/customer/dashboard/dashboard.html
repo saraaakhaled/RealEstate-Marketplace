@@ -1,0 +1,219 @@
+<div class="dashboard-page">
+
+  <app-dashboard-sidebar></app-dashboard-sidebar>
+
+  <main class="dashboard-content">
+
+    <div class="dashboard-header">
+
+      <div>
+
+        <p class="eyebrow">
+          ESTATEHUB
+        </p>
+
+        <h1>
+          Welcome back, {{ userName }} 👋
+        </h1>
+
+        <p>
+          Here's what's happening with your properties.
+        </p>
+
+      </div>
+
+      <a
+        routerLink="/properties"
+        class="browse-btn">
+        Browse Properties
+      </a>
+
+    </div>
+
+
+    <!-- Stats -->
+    <section class="stats-grid">
+
+      @for (stat of stats; track stat.label) {
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            {{ stat.icon }}
+          </div>
+
+          <div>
+
+            <span>
+              {{ stat.label }}
+            </span>
+
+            <strong>
+              {{ stat.value }}
+            </strong>
+
+          </div>
+
+        </div>
+
+      }
+
+    </section>
+
+
+    <!-- Recently Viewed -->
+    <section class="dashboard-section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2>
+            Recently Viewed
+          </h2>
+
+          <p>
+            Properties you viewed recently
+          </p>
+
+        </div>
+
+        <a routerLink="/properties">
+          View All
+        </a>
+
+      </div>
+
+
+      @if (recentlyViewed.length > 0) {
+
+        <div class="property-grid">
+
+          @for (
+            property of recentlyViewed;
+            track property._id
+          ) {
+
+            <app-property-card
+              [property]="property">
+            </app-property-card>
+
+          }
+
+        </div>
+
+      } @else {
+
+        <div class="empty-state">
+
+          <h3>
+            No Recently Viewed Properties
+          </h3>
+
+          <p>
+            Browse properties to see them here.
+          </p>
+
+          <a
+            routerLink="/properties"
+            class="browse-btn">
+            Browse Properties
+          </a>
+
+        </div>
+
+      }
+
+    </section>
+
+
+    <!-- Recent Inquiries -->
+    <section class="dashboard-section inquiries-section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2>
+            Recent Inquiries
+          </h2>
+
+          <p>
+            Your latest property inquiries
+          </p>
+
+        </div>
+
+        <a routerLink="/inquiries">
+          View All
+        </a>
+
+      </div>
+
+
+      @if (inquiries.length > 0) {
+
+        <div class="inquiries-card">
+
+          @for (
+            inquiry of inquiries.slice(0, 3);
+            track inquiry._id
+          ) {
+
+            <div class="inquiry-row">
+
+              <div>
+
+                <h3>
+                  {{ inquiry.property?.title }}
+                </h3>
+
+                <p>
+                  {{ inquiry.createdAt | date:'MMM dd, yyyy' }}
+                </p>
+
+              </div>
+
+              <span
+                class="status"
+                [class.pending]="inquiry.status === 'Pending'"
+                [class.contacted]="inquiry.status === 'Contacted'"
+                [class.scheduled]="inquiry.status === 'Viewing Scheduled'">
+
+                {{ inquiry.status }}
+
+              </span>
+
+            </div>
+
+          }
+
+        </div>
+
+      } @else {
+
+        <div class="empty-state">
+
+          <h3>
+            No Inquiries Yet
+          </h3>
+
+          <p>
+            You haven't sent any property inquiries yet.
+          </p>
+
+          <a
+            routerLink="/properties"
+            class="browse-btn">
+            Browse Properties
+          </a>
+
+        </div>
+
+      }
+
+    </section>
+
+  </main>
+
+</div>

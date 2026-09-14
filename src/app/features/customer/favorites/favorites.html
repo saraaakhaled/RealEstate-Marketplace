@@ -1,0 +1,148 @@
+<div class="favorites-page">
+
+  <!-- Sidebar -->
+  <app-dashboard-sidebar />
+
+  <!-- Main Content -->
+  <main class="favorites-content">
+
+    <!-- Page Header -->
+    <div class="page-header">
+
+      <div>
+        <span class="eyebrow">
+          CUSTOMER PORTAL
+        </span>
+
+        <h1>
+          Favorite Properties
+        </h1>
+
+        <p>
+          Properties you saved for later.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Favorite Properties -->
+    @if (favoriteProperties.length > 0) {
+
+      <div class="favorites-header">
+
+        <div>
+          <h2>Saved Properties</h2>
+
+          <p>
+            {{ favoriteProperties.length }} properties
+          </p>
+        </div>
+
+      </div>
+
+      <div class="favorites-grid">
+
+        @for (property of favoriteProperties; track property._id) {
+
+          <div class="favorite-card">
+
+            <!-- Image -->
+            <div class="favorite-image">
+
+              <img
+                [src]="property.image
+                  ? 'http://localhost:3000/uploads/' + property.image
+                  : 'assets/images/property-placeholder.jpg'"
+                [alt]="property.title"
+              />
+
+              <span class="status">
+                {{ property.listingType }}
+              </span>
+
+            </div>
+
+            <!-- Information -->
+            <div class="favorite-info">
+
+              <h3>
+                {{ property.title }}
+              </h3>
+
+              <p class="location">
+                📍 {{ property.location }}
+              </p>
+
+              <!-- Property Details -->
+              <div class="property-details">
+
+                <span>
+                  🛏 {{ property.bedrooms }} Beds
+                </span>
+
+                <span>
+                  🛁 {{ property.bathrooms }} Baths
+                </span>
+
+                <span>
+                  {{ property.area }} m²
+                </span>
+
+              </div>
+
+              <!-- Bottom -->
+              <div class="favorite-bottom">
+
+                <strong>
+                  ${{ property.price | number }}
+                </strong>
+
+                <button
+                  type="button"
+                  class="remove-btn"
+                  (click)="removeFavorite(property._id)">
+                  ♡ Remove
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+    <!-- Empty State -->
+    @if (favoriteProperties.length === 0) {
+
+      <div class="empty-state">
+
+        <div class="empty-icon">
+          ♡
+        </div>
+
+        <h2>
+          No Favorite Properties
+        </h2>
+
+        <p>
+          You haven't saved any properties yet.
+        </p>
+
+        <a
+          routerLink="/properties"
+          class="browse-btn">
+          Browse Properties
+        </a>
+
+      </div>
+
+    }
+
+  </main>
+
+</div>

@@ -1,0 +1,175 @@
+.dashboard-page {
+min-height: 100vh;
+background: #f8f7f5;
+}
+
+.dashboard-content {
+margin-left: 260px;
+padding: 40px;
+min-height: 100vh;
+box-sizing: border-box;
+}
+
+/* Header */
+
+.dashboard-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 32px;
+}
+
+.eyebrow {
+margin: 0 0 8px;
+color: var(--primary);
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 1.5px;
+}
+
+.dashboard-header h1 {
+margin: 0 0 8px;
+font-family: 'Playfair Display', serif;
+font-size: 32px;
+color: var(--text);
+}
+
+.dashboard-header p {
+margin: 0;
+color: var(--text-light);
+font-size: 14px;
+}
+
+.browse-btn {
+padding: 11px 18px;
+background: var(--primary);
+color: white;
+text-decoration: none;
+border-radius: 8px;
+font-size: 13px;
+font-weight: 600;
+}
+
+/* Stats */
+
+.stats-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 18px;
+margin-bottom: 38px;
+}
+
+.stat-card {
+background: white;
+border: 1px solid var(--border);
+border-radius: 12px;
+padding: 20px;
+display: flex;
+align-items: center;
+gap: 15px;
+}
+
+.stat-icon {
+width: 44px;
+height: 44px;
+border-radius: 10px;
+background: var(--primary-light);
+color: var(--primary);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 21px;
+}
+
+.stat-card span {
+display: block;
+color: var(--text-light);
+font-size: 12px;
+margin-bottom: 5px;
+}
+
+.stat-card strong {
+display: block;
+color: var(--text);
+font-size: 22px;
+}
+
+/* Sections */
+
+.dashboard-section {
+margin-bottom: 38px;
+}
+
+.section-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 18px;
+}
+
+.section-header h2 {
+margin: 0 0 5px;
+font-family: 'Playfair Display', serif;
+font-size: 22px;
+color: var(--text);
+}
+
+.section-header p {
+margin: 0;
+color: var(--text-light);
+font-size: 13px;
+}
+
+.section-header a {
+color: var(--primary);
+text-decoration: none;
+font-size: 13px;
+font-weight: 600;
+}
+
+/* Property Cards */
+
+.property-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+
+/* Inquiries */
+
+.inquiries-card {
+background: white;
+border: 1px solid var(--border);
+border-radius: 12px;
+overflow: hidden;
+}
+
+.inquiry-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 18px 20px;
+border-bottom: 1px solid var(--border);
+}
+
+.inquiry-row:last-child {
+border-bottom: none;
+}
+
+.inquiry-row h3 {
+margin: 0 0 5px;
+font-size: 14px;
+color: var(--text);
+font-weight: 600;
+}
+
+.inquiry-row p {
+margin: 0;
+color: var(--text-light);
+font-size: 12px;
+}
+
+.status {
+padding: 6px 10px;
+border-radius: 20px;
+background: var(--primary)}

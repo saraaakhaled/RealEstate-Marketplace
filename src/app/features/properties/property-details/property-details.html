@@ -1,0 +1,420 @@
+<div class="property-details-page">
+
+  <app-navbar />
+
+  <section class="details-header">
+
+    <div class="container">
+
+      <a
+        routerLink="/properties"
+        class="back-link">
+        ← Back to Properties
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section class="details-section">
+
+    <div class="container">
+
+      @if (!isLoading && property) {
+
+        <div class="details-grid">
+
+
+          <!-- Property Images -->
+
+          <div class="property-gallery">
+
+            <div class="property-image">
+
+              <img
+                [src]="selectedImage"
+                [alt]="property.title"
+              />
+
+              <span class="property-status">
+                {{ property.listingType }}
+              </span>
+
+            </div>
+
+
+            <!-- Image Thumbnails -->
+
+            @if (propertyImages.length > 1) {
+
+              <div class="image-thumbnails">
+
+                @for (
+                  image of propertyImages;
+                  track image
+                ) {
+
+                  <button
+                    type="button"
+                    class="thumbnail"
+                    [class.active]="selectedImage === image"
+                    (click)="selectImage(image)"
+                  >
+
+                    <img
+                      [src]="image"
+                      [alt]="property.title"
+                    />
+
+                  </button>
+
+                }
+
+              </div>
+
+            }
+
+          </div>
+
+
+          <!-- Property Information -->
+
+          <div class="property-info">
+
+            <span class="property-type">
+              {{ property.propertyType }}
+            </span>
+
+            <h1>
+              {{ property.title }}
+            </h1>
+
+            <p class="property-location">
+              📍 {{ property.location }}
+            </p>
+
+            <div class="property-price">
+              ${{ property.price | number }}
+            </div>
+
+
+            <div class="property-features">
+
+              <div class="feature">
+
+                <span class="feature-icon">
+                  🛏
+                </span>
+
+                <div>
+
+                  <strong>
+                    {{ property.bedrooms }}
+                  </strong>
+
+                  <span>
+                    Bedrooms
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="feature">
+
+                <span class="feature-icon">
+                  🛁
+                </span>
+
+                <div>
+
+                  <strong>
+                    {{ property.bathrooms }}
+                  </strong>
+
+                  <span>
+                    Bathrooms
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="feature">
+
+                <span class="feature-icon">
+                  ⌂
+                </span>
+
+                <div>
+
+                  <strong>
+                    {{ property.area }}
+                  </strong>
+
+                  <span>
+                    m²
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="property-description">
+
+              <h2>
+                About this property
+              </h2>
+
+              <p>
+                {{ property.description }}
+              </p>
+
+            </div>
+
+
+            <div class="property-actions">
+
+              <button
+                class="primary-btn"
+                type="button"
+                (click)="contactAgent()">
+
+                Contact Agent
+
+              </button>
+
+
+              <button
+                class="secondary-btn"
+                type="button"
+                (click)="toggleFavorite()">
+
+                {{
+                  isFavorite
+                    ? '♥ Added to Favorites'
+                    : '♡ Add to Favorites'
+                }}
+
+              </button>
+
+            </div>
+
+
+            <!-- Inquiry Form -->
+
+            @if (showInquiryForm) {
+
+              <div class="inquiry-form">
+
+                <div class="inquiry-header">
+
+                  <div>
+
+                    <h2>
+                      Contact Agent
+                    </h2>
+
+                    <p>
+                      Send a message about this property.
+                    </p>
+
+                  </div>
+
+                  <button
+                    type="button"
+                    class="close-btn"
+                    (click)="closeInquiry()">
+
+                    ×
+
+                  </button>
+
+                </div>
+
+
+                @if (!inquirySent) {
+
+                  <textarea
+                    [value]="inquiryMessage"
+                    (input)="inquiryMessage = $any($event.target).value"
+                    placeholder="Write your message..."
+                    rows="5">
+                  </textarea>
+
+
+                  <button
+                    type="button"
+                    class="send-inquiry-btn"
+                    [disabled]="
+                      isSendingInquiry ||
+                      !inquiryMessage.trim()
+                    "
+                    (click)="sendInquiry()">
+
+                    {{
+                      isSendingInquiry
+                        ? 'Sending...'
+                        : 'Send Inquiry'
+                    }}
+
+                  </button>
+
+                }
+
+                @else {
+
+                  <div class="inquiry-success">
+
+                    <div class="success-icon">
+                      ✓
+                    </div>
+
+                    <h3>
+                      Inquiry Sent Successfully
+                    </h3>
+
+                    <p>
+                      The agent will contact you soon.
+                    </p>
+
+                    <button
+                      type="button"
+                      class="send-inquiry-btn"
+                      (click)="closeInquiry()">
+
+                      Done
+
+                    </button>
+
+                  </div>
+
+                }
+
+              </div>
+
+            }
+
+          </div>
+
+        </div>
+
+
+        <!-- Property Information -->
+
+        <div class="additional-info">
+
+          <h2>
+            Property Information
+          </h2>
+
+          <div class="info-grid">
+
+            <div class="info-item">
+
+              <span>
+                Property Type
+              </span>
+
+              <strong>
+                {{ property.propertyType }}
+              </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+              <span>
+                Listing Type
+              </span>
+
+              <strong>
+                {{ property.listingType }}
+              </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+              <span>
+                Location
+              </span>
+
+              <strong>
+                {{ property.location }}
+              </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+              <span>
+                Area
+              </span>
+
+              <strong>
+                {{ property.area }} m²
+              </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+              <span>
+                Bedrooms
+              </span>
+
+              <strong>
+                {{ property.bedrooms }}
+              </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+              <span>
+                Bathrooms
+              </span>
+
+              <strong>
+                {{ property.bathrooms }}
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      }
+
+      @else {
+
+        <div class="loading">
+
+          <p>
+            Loading property details...
+          </p>
+
+        </div>
+
+      }
+
+    </div>
+
+  </section>
+
+  <app-footer />
+
+</div>

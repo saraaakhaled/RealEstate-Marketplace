@@ -1,0 +1,249 @@
+.agents-page {
+  background: var(--background);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.agents-hero {
+  padding: 80px 0 70px;
+  text-align: center;
+  background: #f8f7f4;
+  border-bottom: 1px solid var(--border);
+}
+
+.agents-hero .container {
+  max-width: 750px;
+}
+
+.agents-hero h1 {
+  margin: 14px 0 16px;
+  font-size: 48px;
+  line-height: 1.15;
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+}
+
+.agents-hero p {
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--text-light);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================
+   AGENTS SECTION
+========================= */
+
+.agents-section {
+  padding: 75px 0 90px;
+}
+
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+
+/* =========================
+   AGENT CARD
+========================= */
+
+.agent-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 34px 28px;
+  text-align: center;
+  transition: 0.25s ease;
+}
+
+.agent-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+}
+
+
+/* Avatar */
+
+.agent-avatar {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 20px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+  color: white;
+
+  font-size: 30px;
+  font-weight: 600;
+}
+
+
+/* Agent name */
+
+.agent-content h2 {
+  margin: 0 0 7px;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+
+  color: var(--text);
+}
+
+.agent-role {
+  display: inline-block;
+
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* Details */
+
+.agent-details {
+  margin: 25px 0;
+
+  padding: 18px 0;
+
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin: 10px 0;
+
+  color: var(--text-light);
+
+  font-size: 13px;
+
+  text-align: left;
+
+  word-break: break-word;
+}
+
+.detail-icon {
+  width: 25px;
+  flex-shrink: 0;
+
+  color: var(--primary);
+}
+
+
+/* Contact */
+
+.contact-btn {
+  display: inline-block;
+
+  padding: 11px 22px;
+
+  border-radius: 8px;
+
+  background: var(--primary);
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.contact-btn:hover {
+  background: var(--primary-dark);
+}
+
+
+/* =========================
+   LOADING / EMPTY
+========================= */
+
+.loading-state,
+.empty-state {
+  min-height: 250px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: var(--text-light);
+}
+
+.empty-icon {
+  width: 60px;
+  height: 60px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+  color: white;
+
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.empty-state h2 {
+  margin: 0 0 8px;
+
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+}
+
+.empty-state p {
+  margin: 0;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .agents-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .agents-hero {
+    padding: 60px 20px;
+  }
+
+  .agents-hero h1 {
+    font-size: 36px;
+  }
+
+  .agents-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

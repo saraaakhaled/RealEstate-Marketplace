@@ -1,0 +1,240 @@
+.profile-layout {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+/* Main content */
+.profile-content {
+  margin-left: 260px;
+  padding: 40px 50px;
+  max-width: 1200px;
+}
+
+/* =========================
+   Page Header
+========================= */
+
+.page-header {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 0 0 6px;
+}
+
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  font-weight: 600;
+  margin: 0 0 6px;
+  color: var(--text);
+}
+
+.page-header p:last-child {
+  color: var(--text-light);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* =========================
+   Message
+========================= */
+
+.message {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border: 1px solid #cfe5df;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+/* =========================
+   Cards
+========================= */
+
+.profile-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 26px 28px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 20px;
+}
+
+/* Card header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: var(--text);
+}
+
+.card-header p {
+  color: var(--text-light);
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Edit button */
+.edit-btn {
+  background: #ffffff;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.edit-btn:hover {
+  background: var(--primary-light);
+}
+
+/* =========================
+   Form
+========================= */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: var(--text);
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.form-group input:focus {
+  border-color: var(--primary);
+}
+
+.form-group input[readonly] {
+  background: #f8faf9;
+  color: var(--text-light);
+  cursor: default;
+}
+
+.form-group small {
+  color: var(--danger);
+  font-size: 11px;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 22px;
+}
+
+.save-btn {
+  border: none;
+  background: var(--primary);
+  color: #ffffff;
+  padding: 10px 19px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.save-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* Password card */
+.password-card {
+  margin-bottom: 0;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 900px) {
+
+  .profile-content {
+    margin-left: 220px;
+    padding: 35px 25px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+
+  .profile-content {
+    margin-left: 0;
+    padding: 25px 18px;
+  }
+
+  .card-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .page-header h1 {
+    font-size: 30px;
+  }
+
+  .profile-card {
+    padding: 22px 20px;
+  }
+
+  .edit-btn {
+    width: 100%;
+  }
+
+  .form-actions {
+    justify-content: stretch;
+  }
+
+  .save-btn {
+    width: 100%;
+  }
+}

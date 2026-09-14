@@ -1,0 +1,144 @@
+<app-navbar></app-navbar>
+
+<main class="agents-page">
+
+  <!-- PAGE HERO -->
+  <section class="agents-hero">
+
+    <div class="container">
+
+      <span class="eyebrow">
+        ESTATEHUB
+      </span>
+
+      <h1>
+        Meet Our Agents
+      </h1>
+
+      <p>
+        Work with experienced professionals who are ready
+        to help you find the right property.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- AGENTS -->
+  <section class="section agents-section">
+
+    <div class="container">
+
+      @if (isLoading) {
+
+        <div class="loading-state">
+          <p>Loading agents...</p>
+        </div>
+
+      }
+
+
+      @if (!isLoading && agents.length > 0) {
+
+        <div class="agents-grid">
+
+          @for (agent of agents; track agent._id) {
+
+            <div class="agent-card">
+
+              <div class="agent-avatar">
+
+                {{ agent.name.charAt(0).toUpperCase() }}
+
+              </div>
+
+
+              <div class="agent-content">
+
+                <h2>
+                  {{ agent.name }}
+                </h2>
+
+                <span class="agent-role">
+                  Real Estate Agent
+                </span>
+
+
+                <div class="agent-details">
+
+                  <div class="detail">
+
+                    <span class="detail-icon">
+                      ✉
+                    </span>
+
+                    <span>
+                      {{ agent.email }}
+                    </span>
+
+                  </div>
+
+
+                  <div class="detail">
+
+                    <span class="detail-icon">
+                      ☎
+                    </span>
+
+                    <span>
+                      {{ agent.phone }}
+                    </span>
+
+                  </div>
+
+                </div>
+
+
+                <a
+                  class="contact-btn"
+                  [href]="'mailto:' + agent.email">
+
+                  Contact Agent
+
+                </a>
+
+              </div>
+
+            </div>
+
+          }
+
+        </div>
+
+      }
+
+
+      @if (!isLoading && agents.length === 0) {
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            E
+          </div>
+
+          <h2>
+            No Agents Available
+          </h2>
+
+          <p>
+            There are currently no agents available.
+          </p>
+
+        </div>
+
+      }
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<app-footer></app-footer>

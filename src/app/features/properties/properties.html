@@ -1,0 +1,271 @@
+<div class="properties-page">
+
+  <app-navbar></app-navbar>
+
+
+  <!-- HERO -->
+  <section class="properties-hero">
+
+    <div class="container">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          ESTATEHUB
+        </span>
+
+        <h1>
+          Explore Properties
+        </h1>
+
+        <p>
+          Find a property that fits your needs.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FILTERS -->
+  <section class="filters-section">
+
+    <div class="container">
+
+      <div class="filters-card">
+
+        <!-- Search -->
+        <div class="filter-field search-field">
+
+          <label>
+            Search
+          </label>
+
+          <input
+            type="text"
+            placeholder="Search by title or location..."
+            [(ngModel)]="searchText"
+            (input)="applyFilters()"
+          />
+
+        </div>
+
+
+        <!-- Property Type -->
+        <div class="filter-field">
+
+          <label>
+            Property Type
+          </label>
+
+          <select
+            [(ngModel)]="selectedType"
+            (change)="applyFilters()"
+          >
+
+            <option value="All Types">
+              All Types
+            </option>
+
+            <option value="Apartment">
+              Apartment
+            </option>
+
+            <option value="Villa">
+              Villa
+            </option>
+
+            <option value="House">
+              House
+            </option>
+
+            <option value="Office">
+              Office
+            </option>
+
+            <option value="Commercial">
+              Commercial
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Location -->
+        <div class="filter-field">
+
+          <label>
+            Location
+          </label>
+
+          <select
+            [(ngModel)]="selectedLocation"
+            (change)="applyFilters()"
+          >
+
+            <option value="All Locations">
+              All Locations
+            </option>
+
+            <option value="New Cairo">
+              New Cairo
+            </option>
+
+            <option value="Nasr City">
+              Nasr City
+            </option>
+
+            <option value="Maadi">
+              Maadi
+            </option>
+
+            <option value="Sheikh Zayed">
+              Sheikh Zayed
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Price Range -->
+        <div class="filter-field">
+
+          <label>
+            Price Range
+          </label>
+
+          <select
+            [(ngModel)]="selectedPrice"
+            (change)="applyFilters()"
+          >
+
+            <option value="Any Price">
+              Any Price
+            </option>
+
+            <option value="Under $100k">
+              Under $100k
+            </option>
+
+            <option value="$100k - $300k">
+              $100k - $300k
+            </option>
+
+            <option value="$300k - $500k">
+              $300k - $500k
+            </option>
+
+            <option value="$500k+">
+              $500k+
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Clear Filters -->
+        <button
+          type="button"
+          class="clear-btn"
+          (click)="clearFilters()"
+        >
+          Clear
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROPERTIES -->
+  <section class="properties-section">
+
+    <div class="container">
+
+
+      <!-- Results Header -->
+      <div class="results-header">
+
+        <div>
+
+          <h2>
+            Available Properties
+          </h2>
+
+          <p>
+            Showing
+            {{ filteredProperties.length }}
+            properties
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Property Cards -->
+      @if (filteredProperties.length > 0) {
+
+        <div class="property-grid">
+
+          @for (
+            property of filteredProperties;
+            track property._id
+          ) {
+
+            <app-property-card
+              [property]="property">
+            </app-property-card>
+
+          }
+
+        </div>
+
+      }
+
+
+      <!-- Empty State -->
+      @if (filteredProperties.length === 0) {
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            🏠
+          </div>
+
+          <h3>
+            No Properties Found
+          </h3>
+
+          <p>
+            Try changing your search or filters.
+          </p>
+
+          <button
+            type="button"
+            class="reset-btn"
+            (click)="clearFilters()"
+          >
+            Clear Filters
+          </button>
+
+        </div>
+
+      }
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <app-footer></app-footer>
+
+</div>

@@ -1,0 +1,337 @@
+.add-property-page {
+  min-height: 100vh;
+  background: #f8f7f4;
+}
+
+
+/* =========================
+   Page Header
+========================= */
+
+.page-header {
+  padding: 55px 0 45px;
+  background: #ffffff;
+  border-bottom: 1px solid #e8e5df;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: #777;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-link:hover {
+  color: #333;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 10px;
+  color: #9b8061;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #252525;
+  font-family: Georgia, serif;
+  font-size: 42px;
+  font-weight: 500;
+}
+
+.page-header p {
+  margin-top: 12px;
+  color: #777;
+  font-size: 16px;
+}
+
+
+/* =========================
+   Form Section
+========================= */
+
+.form-section {
+  padding: 50px 0 80px;
+}
+
+.property-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+
+/* =========================
+   Form Cards
+========================= */
+
+.form-card {
+  padding: 35px;
+  background: #ffffff;
+  border: 1px solid #e7e3dc;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+.card-header {
+  margin-bottom: 30px;
+}
+
+.card-header h2 {
+  margin: 0 0 8px;
+  color: #292929;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.card-header p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+
+/* =========================
+   Form Grid
+========================= */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  color: #444;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid #ddd8d0;
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: #333;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #9b8061;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+
+/* =========================
+   Image Upload
+========================= */
+
+.image-upload {
+  width: 100%;
+}
+
+.upload-box {
+  min-height: 190px;
+  padding: 30px;
+  box-sizing: border-box;
+  border: 2px dashed #d8d0c5;
+  border-radius: 12px;
+  background: #faf9f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+.upload-box:hover {
+  border-color: #9b8061;
+  background: #f7f4ef;
+}
+
+.upload-box input {
+  display: none;
+}
+
+.upload-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #eee8df;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8c704f;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.upload-box strong {
+  color: #333;
+  font-size: 15px;
+}
+
+.upload-box span:not(.upload-icon) {
+  color: #888;
+  font-size: 13px;
+}
+
+
+/* =========================
+   Selected Images
+========================= */
+
+.selected-images {
+  margin-top: 22px;
+}
+
+.selected-title {
+  margin: 0 0 12px;
+  color: #444;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  border: 1px solid #e5e1da;
+  border-radius: 7px;
+  background: #fff;
+}
+
+.file-item span {
+  max-width: 70%;
+  overflow: hidden;
+  color: #555;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-item small {
+  color: #999;
+  font-size: 12px;
+}
+
+
+/* =========================
+   Buttons
+========================= */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.cancel-btn,
+.submit-btn {
+  padding: 13px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  border: 1px solid #ddd8d0;
+  background: #fff;
+  color: #555;
+}
+
+.cancel-btn:hover {
+  background: #f5f3ef;
+}
+
+.submit-btn {
+  border: none;
+  background: #9b8061;
+  color: #fff;
+}
+
+.submit-btn:hover {
+  background: #846b50;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 768px) {
+
+  .page-header h1 {
+    font-size: 34px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: auto;
+  }
+
+  .form-card {
+    padding: 25px;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .cancel-btn,
+  .submit-btn {
+    text-align: center;
+  }
+
+}
