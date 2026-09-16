@@ -54,11 +54,18 @@ const propertySchema = new mongoose.Schema(
       required: true,
       min: 0,
     },
+
+    // Main image
     image: {
-  type: String,
-  default: "",
+      type: String,
+      default: "",
     },
 
+    // Additional images
+    images: {
+      type: [String],
+      default: [],
+    },
   },
   {
     timestamps: true,
