@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
+
 import {
   Component,
   OnInit,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  signal
 } from '@angular/core';
+
 import { RouterLink } from '@angular/router';
 
 import { DashboardSidebar } from '../../../shared/components/dashboard-sidebar/dashboard-sidebar';
@@ -27,7 +30,7 @@ import { Auth } from '../../../core/services/auth';
 })
 export class Dashboard implements OnInit {
 
-  userName = 'User';
+  userName = signal('User');
 
   stats = [
     {
@@ -79,8 +82,9 @@ export class Dashboard implements OnInit {
           user
         );
 
-        this.userName =
-          user.name || 'User';
+        this.userName.set(
+          user.name || 'User'
+        );
 
         this.cdr.detectChanges();
       },

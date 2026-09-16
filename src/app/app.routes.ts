@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
 
@@ -33,35 +34,40 @@ export const routes: Routes = [
     path: 'add-property',
     loadComponent: () =>
       import('./features/properties/add-property/add-property')
-        .then(m => m.AddProperty)
+        .then(m => m.AddProperty),
+    canActivate: [authGuard]
   },
 
   {
     path: 'customer/dashboard',
     loadComponent: () =>
       import('./features/customer/dashboard/dashboard')
-        .then(m => m.Dashboard)
+        .then(m => m.Dashboard),
+    canActivate: [authGuard]
   },
 
   {
     path: 'customer/profile',
     loadComponent: () =>
       import('./features/customer/profile/profile')
-        .then(m => m.Profile)
+        .then(m => m.Profile),
+    canActivate: [authGuard]
   },
 
   {
     path: 'customer/favorites',
     loadComponent: () =>
       import('./features/customer/favorites/favorites')
-        .then(m => m.Favorites)
+        .then(m => m.Favorites),
+    canActivate: [authGuard]
   },
 
   {
     path: 'customer/inquiries',
     loadComponent: () =>
       import('./features/customer/inquiries/inquiries')
-        .then(m => m.Inquiries)
+        .then(m => m.Inquiries),
+    canActivate: [authGuard]
   },
 
   {

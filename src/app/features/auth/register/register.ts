@@ -1,73 +1,111 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormGroup
+} from '@angular/forms';
 import { Auth } from '../../../core/services/auth';
 
 @Component({
-selector: 'app-register',
-standalone: true,
-imports: [
-RouterLink,
-FormsModule
-],
-templateUrl: './register.html',
-styleUrl: './register.css'
+  selector: 'app-register',
+  standalone: true,
+  imports: [
+    RouterLink,
+    ReactiveFormsModule
+  ],
+  templateUrl: './register.html',
+  styleUrl: './register.css'
 })
 export class Register {
 
-name = '';
-email = '';
-phone = '';
-password = '';
-confirmPassword = '';
+  registerForm: FormGroup;
 
-errorMessage = '';
-isLoading = false;
+  errorMessage = '';
+  isLoading = false;
 
-constructor(
-private auth: Auth,
-private router: Router
-) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: Auth,
+    private router: Router
+  ) {
 
-register() {
+    this.registerForm = this.fb.group({
 
-this.errorMessage = '';
+      name: ['', Validators.required],
 
-if (this.password !== this.confirmPassword) {
-  this.errorMessage = 'Passwords do not match';
-  return;
-}
+      email: ['', [
+        Validators.required,
+        Validators.email
+      ]],
 
-this.isLoading = true;
+      phone: ['', Validators.required],
 
-this.auth.signup({
-  name: this.name,
-  email: this.email,
-  password: this.password,
-  role: 'Buyer',
-  phone: this.phone
-}).subscribe({
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6)
+      ]],
 
-  next: (response) => {
+      confirmPassword: ['', Validators.required]
 
-    this.auth.saveToken(response.token);
-
-    this.isLoading = false;
-
-    this.router.navigate(['/customer/dashboard']);
-  },
-
-  error: (error) => {
-
-    this.isLoading = false;
-
-    this.errorMessage =
-      error.error?.message || 'Registration failed';
+    });
 
   }
 
-});
+  register() {
 
-}
+    this.errorMessage = '';
+
+    if (this.registerForm.invalid) {
+
+      this.registerForm.markAllAsTouched();
+
+      return;
+    }
+
+    const formValue = this.registerForm.value;
+
+    if (formValue.password !== formValue.confirmPassword) {
+
+      this.errorMessage = 'Passwords do not match';
+
+      return;
+    }
+
+    this.isLoading = true;
+
+    this.auth.signup({
+
+      name: formValue.name,
+      email: formValue.email,
+      password: formValue.password,
+      role: 'Buyer',
+      phone: formValue.phone
+
+    }).subscribe({
+
+      next: (response) => {
+
+        this.auth.saveToken(response.token);
+
+        this.isLoading = false;
+
+        this.router.navigate(['/customer/dashboard']);
+
+      },
+
+      error: (error) => {
+
+        this.isLoading = false;
+
+        this.errorMessage =
+          error.error?.message || 'Registration failed';
+
+      }
+
+    });
+
+  }
 
 }
