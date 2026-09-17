@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class Auth {
 
-  private apiUrl = 'http://localhost:3000/api/auth';
+  private apiUrl = 'https://estatehub-backend-five.vercel.app/api/auth';
 
   constructor(private http: HttpClient) {}
 

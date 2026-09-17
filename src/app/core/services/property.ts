@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PropertyService {
 
-  private apiUrl = 'http://localhost:3000/api/properties';
+  private apiUrl = 'https://estatehub-backend-five.vercel.app/api/properties';
 
   private favoritesKey = 'favorites';
 
