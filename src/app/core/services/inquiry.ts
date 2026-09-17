@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class InquiryService {
 
-  private apiUrl = 'https://estatehub-backend-five.vercel.app/api/inquiries';
+  private apiUrl = 'http://localhost:3000/api/inquiries';
 
   constructor(private http: HttpClient) {}
 

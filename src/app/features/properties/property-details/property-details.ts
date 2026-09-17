@@ -73,7 +73,7 @@ export class PropertyDetails implements OnInit {
         // Main image
         if (data.image) {
           this.propertyImages.push(
-            'https://estatehub-backend-five.vercel.app/uploads/' + data.image
+            'http://localhost:3000/uploads/' + data.image
           );
         }
 
@@ -83,7 +83,7 @@ export class PropertyDetails implements OnInit {
           data.images.forEach((image: string) => {
 
             this.propertyImages.push(
-              'https://estatehub-backend-five.vercel.app/uploads/' + image
+              'http://localhost:3000/uploads/' + image
             );
 
           });
