@@ -9,7 +9,6 @@ const inquiryRoutes = require("./routes/inquiryRoutes");
 
 const app = express();
 
-
 app.use(cors({
   origin: true
 }));
@@ -26,11 +25,15 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected successfully");
-
-    app.listen(process.env.PORT || 3000, () => {
-      console.log(`Server running on port ${process.env.PORT || 3000}`);
-    });
   })
   .catch((error) => {
     console.error("MongoDB connection error:", error);
   });
+
+if (process.env.NODE_ENV !== "production") {
+  app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server running on port ${process.env.PORT || 3000}`);
+  });
+}
+
+module.exports = app;
