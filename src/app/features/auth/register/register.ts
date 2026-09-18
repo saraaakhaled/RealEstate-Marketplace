@@ -42,6 +42,9 @@ export class Register {
 
       phone: ['', Validators.required],
 
+      // Account Type
+      role: ['Buyer', Validators.required],
+
       password: ['', [
         Validators.required,
         Validators.minLength(6)
@@ -80,7 +83,10 @@ export class Register {
       name: formValue.name,
       email: formValue.email,
       password: formValue.password,
-      role: 'Buyer',
+
+      // Send selected role
+      role: formValue.role,
+
       phone: formValue.phone
 
     }).subscribe({
@@ -91,7 +97,16 @@ export class Register {
 
         this.isLoading = false;
 
-        this.router.navigate(['/customer/dashboard']);
+        // Go to the correct dashboard
+        if (formValue.role === 'Agent') {
+
+          this.router.navigate(['/agent/dashboard']);
+
+        } else {
+
+          this.router.navigate(['/customer/dashboard']);
+
+        }
 
       },
 

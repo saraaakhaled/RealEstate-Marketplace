@@ -6,10 +6,7 @@ import { Auth } from '../../../core/services/auth';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    RouterLink,
-    FormsModule
-  ],
+  imports: [RouterLink, FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -17,7 +14,6 @@ export class Login {
 
   email = '';
   password = '';
-
   errorMessage = '';
   isLoading = false;
 
@@ -35,23 +31,39 @@ export class Login {
 
       next: (response) => {
 
+        console.log('Login response:', response);
+
         this.auth.saveToken(response.token);
 
         this.isLoading = false;
 
-        this.router.navigate(['/customer/dashboard']);
+        const role = response.user?.role;
+
+        console.log('User role:', role);
+
+        if (role === 'Agent') {
+
+          this.router.navigate(['/agent/dashboard']);
+
+        } else {
+
+          this.router.navigate(['/customer/dashboard']);
+
+        }
+
       },
 
       error: (error) => {
 
+        console.error('LOGIN ERROR:', error);
+
         this.isLoading = false;
 
         this.errorMessage =
-          error.error?.message || 'Invalid email or password';
-
+          error.error?.message ||
+          'Invalid email or password';
       }
 
     });
   }
-
 }

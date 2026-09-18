@@ -1,0 +1,241 @@
+<div class="agent-dashboard">
+
+  <aside class="sidebar">
+
+<div class="sidebar-brand">
+  <h2>EstateHub</h2>
+  <span>Agent Portal</span>
+</div>
+
+<nav class="sidebar-nav">
+
+  <button class="nav-item active">
+    <span>⌂</span>
+    Dashboard
+  </button>
+
+  <button class="nav-item" (click)="viewProperties()">
+    <span>⌂</span>
+    Properties
+  </button>
+
+  <button class="nav-item" (click)="addProperty()">
+    <span>＋</span>
+    Add Property
+  </button>
+
+</nav>
+
+<button class="logout-btn" (click)="logout()">
+  Logout
+</button>
+```
+
+  </aside>
+
+  <main class="dashboard-content">
+
+```
+<header class="dashboard-header">
+
+  <div>
+    <p class="eyebrow">ESTATEHUB</p>
+
+    <h1>
+      Welcome back, {{ agentName }} 👋
+    </h1>
+
+    <p class="subtitle">
+      Manage your properties and listings from your dashboard.
+    </p>
+  </div>
+
+  <button
+    class="add-property-btn"
+    (click)="addProperty()"
+  >
+    + Add Property
+  </button>
+
+</header>
+
+
+<!-- STATS -->
+
+<section class="stats-grid">
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+      🏠
+    </div>
+
+    <div>
+      <span class="stat-label">
+        My Properties
+      </span>
+
+      <h2>
+        {{ totalProperties }}
+      </h2>
+    </div>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+      📩
+    </div>
+
+    <div>
+      <span class="stat-label">
+        For Sale
+      </span>
+
+      <h2>
+        {{ saleProperties }}
+      </h2>
+    </div>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+      🏷️
+    </div>
+
+    <div>
+      <span class="stat-label">
+        For Rent
+      </span>
+
+      <h2>
+        {{ rentProperties }}
+      </h2>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- AGENT INFORMATION -->
+
+<section class="dashboard-section">
+
+  <div class="section-header">
+
+    <div>
+      <p class="eyebrow">ACCOUNT</p>
+
+      <h2>
+        Agent Information
+      </h2>
+    </div>
+
+  </div>
+
+
+  <div class="profile-card">
+
+    <div class="profile-avatar">
+      {{ agentName.charAt(0).toUpperCase() }}
+    </div>
+
+    <div class="profile-info">
+
+      <h3>
+        {{ agentName }}
+      </h3>
+
+      <p>
+        <strong>Email:</strong>
+        {{ agentEmail }}
+      </p>
+
+      <p>
+        <strong>Phone:</strong>
+        {{ agentPhone }}
+      </p>
+
+      <span class="role-badge">
+        Real Estate Agent
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- QUICK ACTIONS -->
+
+<section class="dashboard-section">
+
+  <div class="section-header">
+
+    <div>
+      <p class="eyebrow">QUICK ACTIONS</p>
+
+      <h2>
+        Manage Your Work
+      </h2>
+    </div>
+
+  </div>
+
+
+  <div class="actions-grid">
+
+    <button
+      class="action-card"
+      (click)="addProperty()"
+    >
+
+      <span class="action-icon">
+        ＋
+      </span>
+
+      <div>
+        <h3>Add Property</h3>
+
+        <p>
+          Create a new property listing.
+        </p>
+      </div>
+
+    </button>
+
+
+    <button
+      class="action-card"
+      (click)="viewProperties()"
+    >
+
+      <span class="action-icon">
+        🏠
+      </span>
+
+      <div>
+        <h3>View Properties</h3>
+
+        <p>
+          Browse available property listings.
+        </p>
+      </div>
+
+    </button>
+
+  </div>
+
+</section>
+```
+
+  </main>
+
+</div>

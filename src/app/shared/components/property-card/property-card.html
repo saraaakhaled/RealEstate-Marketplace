@@ -6,7 +6,8 @@
       [src]="property().image
         ? 'http://localhost:3000/uploads/' + property().image
         : 'assets/images/property-placeholder.jpg'"
-      [alt]="property().title">
+      [alt]="property().title"
+    >
 
     <span class="listing-badge">
       {{ property().listingType }}
@@ -21,17 +22,21 @@
 
   </div>
 
+
   <div class="property-content">
 
     <div class="price">
       {{ property().price }}
     </div>
 
-    <h3>{{ property().title }}</h3>
+    <h3>
+      {{ property().title }}
+    </h3>
 
     <p class="location">
       ⌖ {{ property().location }}
     </p>
+
 
     <div class="details">
 
@@ -49,11 +54,43 @@
 
     </div>
 
+
     <a
       class="details-link"
-      [routerLink]="['/properties', property()._id]">
+      [routerLink]="[
+        '/properties',
+        property()._id
+      ]"
+    >
       View Details →
     </a>
+
+
+    <!-- AGENT ACTIONS -->
+
+    @if (isOwner()) {
+
+      <div class="agent-actions">
+
+        <button
+          type="button"
+          class="edit-btn"
+          (click)="onEdit()"
+        >
+          ✏️ Edit
+        </button>
+
+        <button
+          type="button"
+          class="delete-btn"
+          (click)="onDelete()"
+        >
+          🗑️ Delete
+        </button>
+
+      </div>
+
+    }
 
   </div>
 

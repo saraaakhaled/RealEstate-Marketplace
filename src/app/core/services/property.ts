@@ -15,6 +15,19 @@ export class PropertyService {
     private http: HttpClient
   ) {}
 
+  // =========================
+  // Authorization Headers
+  // =========================
+
+  private getAuthHeaders(): HttpHeaders {
+
+    const token = localStorage.getItem('token');
+
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+  }
+
 
   // =========================
   // Get All Properties
@@ -22,15 +35,11 @@ export class PropertyService {
 
   getProperties(): Observable<any[]> {
 
-    const token = localStorage.getItem('token');
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-
     return this.http.get<any[]>(
       this.apiUrl,
-      { headers }
+      {
+        headers: this.getAuthHeaders()
+      }
     );
   }
 
@@ -41,15 +50,11 @@ export class PropertyService {
 
   getPropertyById(id: string): Observable<any> {
 
-    const token = localStorage.getItem('token');
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-
     return this.http.get<any>(
       `${this.apiUrl}/${id}`,
-      { headers }
+      {
+        headers: this.getAuthHeaders()
+      }
     );
   }
 
@@ -63,12 +68,7 @@ export class PropertyService {
     images: File[]
   ): Observable<any> {
 
-    const token = localStorage.getItem('token');
-
     const formData = new FormData();
-
-
-    // Property information
 
     formData.append(
       'title',
@@ -116,19 +116,20 @@ export class PropertyService {
     );
 
 
+    // =========================
     // Images
+    // =========================
 
     if (images.length > 0) {
 
-      // First image = main image
+      // Main image
 
       formData.append(
         'image',
         images[0]
       );
 
-
-      // Remaining images
+      // Additional images
 
       images
         .slice(1)
@@ -140,20 +141,50 @@ export class PropertyService {
           );
 
         });
-
     }
-
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
 
 
     return this.http.post<any>(
       this.apiUrl,
       formData,
       {
-        headers
+        headers: this.getAuthHeaders()
+      }
+    );
+  }
+
+
+  // =========================
+  // Update Property
+  // =========================
+
+  updateProperty(
+    id: string,
+    property: any
+  ): Observable<any> {
+
+    return this.http.patch<any>(
+      `${this.apiUrl}/${id}`,
+      property,
+      {
+        headers: this.getAuthHeaders()
+      }
+    );
+  }
+
+
+  // =========================
+  // Delete Property
+  // =========================
+
+  deleteProperty(
+    id: string
+  ): Observable<any> {
+
+    return this.http.delete<any>(
+      `${this.apiUrl}/${id}`,
+      {
+        headers: this.getAuthHeaders()
       }
     );
   }
@@ -165,9 +196,10 @@ export class PropertyService {
 
   getFavorites(): any[] {
 
-    const favorites = localStorage.getItem(
-      this.favoritesKey
-    );
+    const favorites =
+      localStorage.getItem(
+        this.favoritesKey
+      );
 
     if (!favorites) {
       return [];
@@ -184,19 +216,20 @@ export class PropertyService {
       );
 
       return [];
-
     }
   }
 
 
   addToFavorites(property: any): void {
 
-    const favorites = this.getFavorites();
+    const favorites =
+      this.getFavorites();
 
-    const alreadyExists = favorites.some(
-      (item: any) =>
-        item._id === property._id
-    );
+    const alreadyExists =
+      favorites.some(
+        (item: any) =>
+          item._id === property._id
+      );
 
     if (!alreadyExists) {
 
@@ -206,14 +239,14 @@ export class PropertyService {
         this.favoritesKey,
         JSON.stringify(favorites)
       );
-
     }
   }
 
 
   removeFromFavorites(id: string): void {
 
-    const favorites = this.getFavorites();
+    const favorites =
+      this.getFavorites();
 
     const updatedFavorites =
       favorites.filter(
@@ -230,7 +263,8 @@ export class PropertyService {
 
   isFavorite(id: string): boolean {
 
-    const favorites = this.getFavorites();
+    const favorites =
+      this.getFavorites();
 
     return favorites.some(
       (item: any) =>

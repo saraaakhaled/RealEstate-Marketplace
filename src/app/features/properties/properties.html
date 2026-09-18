@@ -221,8 +221,10 @@
           ) {
 
             <app-property-card
-              [property]="property">
-            </app-property-card>
+  [property]="property"
+  (edit)="editProperty($event)"
+  (delete)="deleteProperty($event)">
+</app-property-card>
 
           }
 

@@ -2,8 +2,7 @@
 
   <div class="register-card">
 
-    <div class="register-logo">
-    </div>
+    <div class="register-logo"></div>
 
     <h1>Create Account</h1>
 
@@ -13,6 +12,7 @@
 
     <form [formGroup]="registerForm" (ngSubmit)="register()">
 
+      <!-- Full Name -->
       <div class="form-group">
         <label for="name">Full Name</label>
 
@@ -33,7 +33,7 @@
         }
       </div>
 
-
+      <!-- Email -->
       <div class="form-group">
         <label for="email">Email Address</label>
 
@@ -54,7 +54,7 @@
         }
       </div>
 
-
+      <!-- Phone -->
       <div class="form-group">
         <label for="phone">Phone Number</label>
 
@@ -75,7 +75,20 @@
         }
       </div>
 
+      <!-- Account Type -->
+      <div class="form-group">
+        <label for="role">Account Type</label>
 
+        <select
+          id="role"
+          formControlName="role"
+        >
+          <option value="Buyer">Buyer</option>
+          <option value="Agent">Agent</option>
+        </select>
+      </div>
+
+      <!-- Password -->
       <div class="form-group">
         <label for="password">Password</label>
 
@@ -96,7 +109,7 @@
         }
       </div>
 
-
+      <!-- Confirm Password -->
       <div class="form-group">
         <label for="confirmPassword">Confirm Password</label>
 
@@ -117,14 +130,14 @@
         }
       </div>
 
-
+      <!-- Error -->
       @if (errorMessage) {
         <p class="error-message">
           {{ errorMessage }}
         </p>
       }
 
-
+      <!-- Button -->
       <button
         type="submit"
         class="register-btn"
@@ -135,11 +148,9 @@
 
     </form>
 
-
     <div class="divider">
       <span>OR</span>
     </div>
-
 
     <p class="login-text">
       Already have an account?

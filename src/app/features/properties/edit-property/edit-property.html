@@ -1,0 +1,238 @@
+<div class="edit-page">
+
+  <div class="edit-container">
+
+    <div class="page-header">
+      <p class="eyebrow">ESTATEHUB</p>
+
+      <h1>Edit Property</h1>
+
+      <p>
+        Update your property information below.
+      </p>
+    </div>
+
+
+    @if (loading) {
+
+      <div class="loading">
+        Loading property...
+      </div>
+
+    } @else {
+
+      <form
+        class="property-form"
+        [formGroup]="propertyForm"
+        (ngSubmit)="updateProperty()"
+      >
+
+        <div class="form-group">
+
+          <label>Property Title</label>
+
+          <input
+            type="text"
+            formControlName="title"
+            placeholder="Enter property title"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Description</label>
+
+          <textarea
+            rows="5"
+            formControlName="description"
+            placeholder="Describe the property"
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label>Price</label>
+
+            <input
+              type="number"
+              formControlName="price"
+              min="0"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Location</label>
+
+            <input
+              type="text"
+              formControlName="location"
+              placeholder="e.g. New Cairo"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label>Property Type</label>
+
+            <select formControlName="propertyType">
+
+              <option value="Apartment">
+                Apartment
+              </option>
+
+              <option value="Villa">
+                Villa
+              </option>
+
+              <option value="House">
+                House
+              </option>
+
+              <option value="Office">
+                Office
+              </option>
+
+              <option value="Land">
+                Land
+              </option>
+
+              <option value="Chalet">
+                Chalet
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Listing Type</label>
+
+            <select formControlName="listingType">
+
+              <option value="Sale">
+                Sale
+              </option>
+
+              <option value="Rent">
+                Rent
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-row three-columns">
+
+          <div class="form-group">
+
+            <label>Bedrooms</label>
+
+            <input
+              type="number"
+              formControlName="bedrooms"
+              min="0"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Bathrooms</label>
+
+            <input
+              type="number"
+              formControlName="bathrooms"
+              min="0"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Area (m²)</label>
+
+            <input
+              type="number"
+              formControlName="area"
+              min="0"
+            >
+
+          </div>
+
+        </div>
+
+
+        @if (errorMessage) {
+
+          <div class="message error">
+            {{ errorMessage }}
+          </div>
+
+        }
+
+
+        @if (successMessage) {
+
+          <div class="message success">
+            {{ successMessage }}
+          </div>
+
+        }
+
+
+        <div class="form-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            (click)="cancel()"
+          >
+            Cancel
+          </button>
+
+
+          <button
+            type="submit"
+            class="save-btn"
+            [disabled]="saving"
+          >
+
+            @if (saving) {
+              Saving...
+            } @else {
+              Save Changes
+            }
+
+          </button>
+
+        </div>
+
+      </form>
+
+    }
+
+  </div>
+
+</div>

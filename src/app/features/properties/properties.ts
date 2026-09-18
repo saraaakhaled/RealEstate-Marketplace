@@ -5,12 +5,14 @@ import {
 } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { PropertyCard } from '../../shared/components/property-card/property-card';
 import { Navbar } from '../../shared/components/navbar/navbar';
 import { Footer } from '../../shared/components/footer/footer';
+
 import { PropertyService } from '../../core/services/property';
+
 
 @Component({
   selector: 'app-properties',
@@ -44,9 +46,14 @@ export class Properties implements OnInit {
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,
+    private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
 
+
+  // =========================
+  // Init
+  // =========================
 
   ngOnInit(): void {
 
@@ -74,6 +81,10 @@ export class Properties implements OnInit {
   }
 
 
+  // =========================
+  // Load Properties
+  // =========================
+
   loadProperties(): void {
 
     this.propertyService
@@ -100,17 +111,6 @@ export class Properties implements OnInit {
 
           this.applyFilters();
 
-
-          console.log(
-            'Filtered properties:',
-            this.filteredProperties
-          );
-
-
-          /*
-           * Tell Angular to update
-           * the page immediately.
-           */
           this.cdr.detectChanges();
         },
 
@@ -127,13 +127,16 @@ export class Properties implements OnInit {
 
           this.filteredProperties = [];
 
-
           this.cdr.detectChanges();
         }
 
       });
   }
 
+
+  // =========================
+  // Filters
+  // =========================
 
   applyFilters(): void {
 
@@ -172,27 +175,19 @@ export class Properties implements OnInit {
             Number(property.price) || 0;
 
 
-          /*
-           * Search
-           */
           const matchesSearch =
             search === '' ||
             title.includes(search) ||
             location.includes(search);
 
 
-          /*
-           * Property Type
-           */
           const matchesType =
-            this.selectedType === 'All Types' ||
+            this.selectedType ===
+              'All Types' ||
             propertyType ===
               this.selectedType.toLowerCase();
 
 
-          /*
-           * Location
-           */
           const matchesLocation =
             this.selectedLocation ===
               'All Locations' ||
@@ -201,9 +196,6 @@ export class Properties implements OnInit {
                 .toLowerCase();
 
 
-          /*
-           * Price
-           */
           let matchesPrice = true;
 
 
@@ -249,6 +241,7 @@ export class Properties implements OnInit {
 
             matchesPrice =
               price > 500000;
+
           }
 
 
@@ -258,23 +251,18 @@ export class Properties implements OnInit {
             matchesLocation &&
             matchesPrice
           );
+
         }
       );
 
 
-    console.log(
-      'Filtered properties:',
-      this.filteredProperties
-    );
-
-
-    /*
-     * Update the screen when filters
-     * change.
-     */
     this.cdr.detectChanges();
   }
 
+
+  // =========================
+  // Clear Filters
+  // =========================
 
   clearFilters(): void {
 
@@ -296,6 +284,124 @@ export class Properties implements OnInit {
 
 
     this.cdr.detectChanges();
+  }
+
+
+  // =========================
+  // Edit Property
+  // =========================
+
+  editProperty(id: string): void {
+
+    console.log(
+      'Editing property:',
+      id
+    );
+
+
+    this.router.navigate([
+      '/edit-property',
+      id
+    ]);
+  }
+
+
+  // =========================
+  // Delete Property
+  // =========================
+
+  deleteProperty(id: string): void {
+
+    const confirmed =
+      window.confirm(
+        'Are you sure you want to delete this property?'
+      );
+
+
+    if (!confirmed) {
+      return;
+    }
+
+
+    console.log(
+      'Deleting property:',
+      id
+    );
+
+
+    this.propertyService
+      .deleteProperty(id)
+      .subscribe({
+
+        next: (response) => {
+
+          console.log(
+            'Property deleted:',
+            response
+          );
+
+
+          // Remove property from local arrays
+
+          this.properties =
+            this.properties.filter(
+              (property) =>
+                property._id !== id
+            );
+
+
+          this.filteredProperties =
+            this.filteredProperties.filter(
+              (property) =>
+                property._id !== id
+            );
+
+
+          this.cdr.detectChanges();
+
+        },
+
+
+        error: (error) => {
+
+          console.error(
+            'Delete property error:',
+            error
+          );
+
+
+          if (
+            error.status === 403
+          ) {
+
+            alert(
+              'You can only delete your own properties.'
+            );
+
+          }
+
+          else if (
+            error.status === 401
+          ) {
+
+            alert(
+              'Your session has expired. Please login again.'
+            );
+
+          }
+
+          else {
+
+            alert(
+              'Failed to delete property.'
+            );
+
+          }
+
+        }
+
+      });
+
   }
 
 }

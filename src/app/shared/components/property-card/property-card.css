@@ -97,3 +97,75 @@
   font-weight: 600;
   font-size: 13px;
 }
+/* =========================
+   Agent Actions
+   ========================= */
+
+.agent-actions {
+
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 16px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid var(--border);
+}
+
+
+.agent-actions button {
+
+  flex: 1;
+
+  padding: 10px 12px;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+
+  font-family: inherit;
+}
+
+
+.edit-btn {
+
+  border: 1px solid var(--border);
+
+  background: white;
+
+  color: var(--primary);
+}
+
+
+.edit-btn:hover {
+
+  background: var(--primary);
+
+  color: white;
+}
+
+
+.delete-btn {
+
+  border: 1px solid #e5e5e5;
+
+  background: white;
+
+  color: var(--danger);
+}
+
+
+.delete-btn:hover {
+
+  background: var(--danger);
+
+  color: white;
+}

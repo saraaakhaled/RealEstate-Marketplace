@@ -1,7 +1,12 @@
 import { Routes } from '@angular/router';
+
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
+
+  // =========================
+  // HOME
+  // =========================
 
   {
     path: '',
@@ -16,12 +21,10 @@ export const routes: Routes = [
         .then(m => m.Home)
   },
 
-  {
-    path: 'properties/:id',
-    loadComponent: () =>
-      import('./features/properties/property-details/property-details')
-        .then(m => m.PropertyDetails)
-  },
+
+  // =========================
+  // PROPERTIES
+  // =========================
 
   {
     path: 'properties',
@@ -31,18 +34,41 @@ export const routes: Routes = [
   },
 
   {
+    path: 'properties/:id',
+    loadComponent: () =>
+      import('./features/properties/property-details/property-details')
+        .then(m => m.PropertyDetails)
+  },
+
+  {
     path: 'add-property',
     loadComponent: () =>
       import('./features/properties/add-property/add-property')
         .then(m => m.AddProperty),
+
     canActivate: [authGuard]
   },
+
+  {
+    path: 'edit-property/:id',
+    loadComponent: () =>
+      import('./features/properties/edit-property/edit-property')
+        .then(m => m.EditProperty),
+
+    canActivate: [authGuard]
+  },
+
+
+  // =========================
+  // CUSTOMER
+  // =========================
 
   {
     path: 'customer/dashboard',
     loadComponent: () =>
       import('./features/customer/dashboard/dashboard')
         .then(m => m.Dashboard),
+
     canActivate: [authGuard]
   },
 
@@ -51,6 +77,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/customer/profile/profile')
         .then(m => m.Profile),
+
     canActivate: [authGuard]
   },
 
@@ -59,6 +86,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/customer/favorites/favorites')
         .then(m => m.Favorites),
+
     canActivate: [authGuard]
   },
 
@@ -67,8 +95,28 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/customer/inquiries/inquiries')
         .then(m => m.Inquiries),
+
     canActivate: [authGuard]
   },
+
+
+  // =========================
+  // AGENT
+  // =========================
+
+  {
+    path: 'agent/dashboard',
+    loadComponent: () =>
+      import('./features/agent/dashboard/dashboard')
+        .then(m => m.Dashboard),
+
+    canActivate: [authGuard]
+  },
+
+
+  // =========================
+  // AGENTS
+  // =========================
 
   {
     path: 'agents',
@@ -77,12 +125,22 @@ export const routes: Routes = [
         .then(m => m.Agents)
   },
 
+
+  // =========================
+  // ABOUT
+  // =========================
+
   {
     path: 'about',
     loadComponent: () =>
       import('./features/about/about')
         .then(m => m.About)
   },
+
+
+  // =========================
+  // AUTH
+  // =========================
 
   {
     path: 'login',
